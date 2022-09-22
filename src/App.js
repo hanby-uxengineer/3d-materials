@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import Standard from './components/Standard';
+import Physical from './components/Physical';
 
-function App() {
+const StyledApp = styled.div`
+	width: 100%;
+	min-height: 100vh;
+	background: black;
+`;
+
+const CanvasContainer = styled.div`
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+`;
+
+const CanvasWrapper = styled.div`
+	width: 25%;
+	height: 30rem;
+`;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <StyledApp>
+		<CanvasContainer>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Physical />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+		</CanvasContainer>
+    </StyledApp>
+  )
 }
-
-export default App;
