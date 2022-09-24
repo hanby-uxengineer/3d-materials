@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useRef, useState, useEffect, Suspense } from 'react';
+import { useRef, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ContactShadows } from "@react-three/drei";
+import { ContactShadows, useCursor } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 
@@ -18,14 +18,10 @@ export default function Standard() {
     const [{ wobble, color }] = useSpring({
         wobble: clicked ? 1.2 : hovered ? 1.05 : 1,
         color: clicked ? 'royalblue' : hovered ? 'cornflowerblue' : 'white',
-        config: (n) => n === 'wobble' && hovered && { mass: 3, tension: 200, friction: 10 }
+        config: (n) => n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 10 }
     }, [hovered, clicked]);
     
-    useEffect(() => {
-        document.body.style.cursor = hovered
-        ? 'pointer'
-        : 'unset'
-    });
+    useCursor(hovered);
 
     return (
         <StyledStandard>

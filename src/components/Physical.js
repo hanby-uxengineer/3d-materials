@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useRef, useState, useEffect, Suspense } from 'react';
+import { useRef, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Cloud, Environment, Float } from "@react-three/drei";
+import { Cloud, Environment, Float, useCursor } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 
@@ -19,11 +19,7 @@ export default function Physical() {
         transmission:  clicked ? 1 : hovered ? 0.98 : 0.95
     }, [hovered, clicked]);
 
-    useEffect(() => {
-        document.body.style.cursor = hovered
-        ? 'pointer'
-        : 'unset'
-    });
+    useCursor(hovered);
 
     return (
         <StyledPhysical>
@@ -42,14 +38,14 @@ export default function Physical() {
                             <sphereGeometry args={[1.5, 64, 64]} />
                             <a.meshPhysicalMaterial color='white' transmission={transmission} opacity={1} metalness={0} roughness={1} clearcoat={1} clearcoatRoughness={0} ior={2} thickness={1} specularIntensity={1} specularColor='white' envMapIntensity={1} exposure={1} />
                         </a.mesh>
-                        <Environment preset="sunset" />
                     </Float>
                     <mesh position={[0, 0, -20]}>
-                        <planeGeometry args={[50, 50, 1]} />
+                        <planeGeometry args={[100, 100, 1]} />
                         <meshStandardMaterial color='royalblue' />
                     </mesh>
                     <Cloud castShadow receiveShadow position={[-12, 12, -10]} speed={0.5} opacity={0.8} />
                     <Cloud castShadow receiveShadow position={[12, -12, -10]} speed={0.5} opacity={0.8} />
+                    <Environment preset="sunset" />
                 </Suspense>
             </Canvas>
         </StyledPhysical>

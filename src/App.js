@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Standard from './components/Standard';
 import Physical from './components/Physical';
 import Bloom from './components/Bloom';
+import Distort from './components/Distort';
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -16,8 +17,16 @@ const CanvasContainer = styled.div`
 `;
 
 const CanvasWrapper = styled.div`
-	width: 25%;
+	width: 25vw;
 	height: 30rem;
+
+	@media only screen and (max-width: 904px) {
+		width: 50vw;
+	}
+
+	@media only screen and (max-width: 599px) {
+		width: 100vw;
+	}
 `;
 
 export default function App() {
@@ -35,7 +44,7 @@ export default function App() {
 					<Bloom />
 				</CanvasWrapper>
 				<CanvasWrapper>
-					<Standard />
+					<Distort />
 				</CanvasWrapper>
 				<CanvasWrapper>
 					<Standard />

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useRef, useState, useEffect, Suspense } from 'react';
 import * as THREE from 'three';
 import { Canvas, extend } from '@react-three/fiber';
-import { Effects, BakeShadows, Sparkles, OrbitControls } from "@react-three/drei";
+import { Effects, BakeShadows, Stars, OrbitControls } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import { UnrealBloomPass } from 'three-stdlib';
@@ -38,7 +38,7 @@ export default function Bloom() {
             >
                 <OrbitControls enableZoom={false} autoRotate />
                 { (hovered)
-                    ? <Sparkles count={100} scale={[10, 10, 10]} size={1.5} speed={2} />
+                    ? <Stars radius={50} depth={50} count={100} factor={10} fade speed={1} />
                     : <></>
                 }
                 <color attach="background" args={['#000000']} />
