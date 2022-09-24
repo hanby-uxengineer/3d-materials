@@ -20,34 +20,35 @@ const CanvasWrapper = styled.div`
 `;
 
 export default function App() {
-  return (
-    <StyledApp>
-		<CanvasContainer>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Physical />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-			<CanvasWrapper>
-				<Standard />
-			</CanvasWrapper>
-		</CanvasContainer>
-    </StyledApp>
-  )
+
+	return (
+		<StyledApp>
+			<CanvasContainer>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Physical />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+				<CanvasWrapper>
+					<Standard />
+				</CanvasWrapper>
+			</CanvasContainer>
+		</StyledApp>
+	)
 }
