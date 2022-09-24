@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/3d-materials/static/js/main.66d90577.js",
+    "main.js": "/3d-materials/static/js/main.b66f3861.js",
     "index.html": "/3d-materials/index.html",
-    "main.66d90577.js.map": "/3d-materials/static/js/main.66d90577.js.map"
+    "main.b66f3861.js.map": "/3d-materials/static/js/main.b66f3861.js.map"
   },
   "entrypoints": [
-    "static/js/main.66d90577.js"
+    "static/js/main.b66f3861.js"
   ]
 }
