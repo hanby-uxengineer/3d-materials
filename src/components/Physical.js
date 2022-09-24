@@ -10,8 +10,7 @@ const StyledPhysical = styled.div`
     height: 100%;
 `;
 
-
-function Physical() {
+export default function Physical() {
     const ref = useRef()
     const [hovered, hover] = useState(false)
     const [clicked, click] = useState(false)
@@ -56,5 +55,3 @@ function Physical() {
         </StyledPhysical>
     )
 }
-
-export default Physical;

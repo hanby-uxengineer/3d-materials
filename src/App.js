@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Standard from './components/Standard';
 import Physical from './components/Physical';
+import Bloom from './components/Bloom';
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -31,7 +32,7 @@ export default function App() {
 					<Physical />
 				</CanvasWrapper>
 				<CanvasWrapper>
-					<Standard />
+					<Bloom />
 				</CanvasWrapper>
 				<CanvasWrapper>
 					<Standard />

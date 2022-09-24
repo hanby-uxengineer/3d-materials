@@ -8,7 +8,7 @@ import { a } from "@react-spring/three";
 const StyledStandard = styled.div`
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, black 0%, black 70%, rgb(25, 25, 25) 100%);
+    background: linear-gradient(180deg, rgb(25, 35, 55) 0%, rgb(0, 0, 0) 70%, rgb(25, 35, 55) 100%);
 `;
 
 export default function Standard() {
@@ -16,7 +16,7 @@ export default function Standard() {
     const [hovered, hover] = useState(false);
     const [clicked, click] = useState(false);
     const [{ wobble, color }] = useSpring({
-        wobble: clicked ? 1.2 : hovered ? 1.03 : 1,
+        wobble: clicked ? 1.2 : hovered ? 1.05 : 1,
         color: clicked ? 'royalblue' : hovered ? 'cornflowerblue' : 'white',
         config: (n) => n === 'wobble' && hovered && { mass: 3, tension: 200, friction: 10 }
     }, [hovered, clicked]);
