@@ -3,6 +3,10 @@ import Standard from './components/Standard';
 import Physical from './components/Physical';
 import Bloom from './components/Bloom';
 import Distort from './components/Distort';
+import Reflect from './components/Reflect';
+import Metal from './components/Metal';
+import Lamina from './components/Lamina';
+import Texture from './components/Texture';
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -47,16 +51,16 @@ export default function App() {
 					<Distort />
 				</CanvasWrapper>
 				<CanvasWrapper>
-					<Standard />
+					<Reflect />
 				</CanvasWrapper>
 				<CanvasWrapper>
-					<Standard />
+					<Metal />
 				</CanvasWrapper>
 				<CanvasWrapper>
-					<Standard />
+					<Lamina />
 				</CanvasWrapper>
 				<CanvasWrapper>
-					<Standard />
+					<Texture />
 				</CanvasWrapper>
 			</CanvasContainer>
 		</StyledApp>

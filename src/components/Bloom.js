@@ -16,16 +16,18 @@ const StyledBloom = styled.div`
 `;
 
 export default function Bloom() {
-    const glowMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(7, 0.5, 0), toneMapped: false })
+    const glowColorA = new THREE.MeshBasicMaterial({ color: new THREE.Color(4, 0.5, 0), toneMapped: false });
+    const glowColorB = new THREE.MeshBasicMaterial({ color: new THREE.Color(7, 0.5, 0), toneMapped: false });
     const ref = useRef();
     const [hovered, hover] = useState(false);
-    const [{ wobble }] = useSpring({
-        wobble: hovered ? 1.2 : 1
+    const [{ wobble, material }] = useSpring({
+        wobble: hovered ? 1.2 : 1,
+        material: hovered ? glowColorA : glowColorB
     }, [hovered]);
-    
+
     useEffect(() => {
         document.body.style.cursor = hovered
-        ? 'grab'
+        ? 'move'
         : 'unset'
     });
 
@@ -47,7 +49,7 @@ export default function Bloom() {
                 <Suspense fallback={null}>
                     <a.mesh
                         castShadow receiveShadow
-                        material={glowMaterial}
+                        material={material}
                         ref={ref}
                         scale={wobble}
                     >

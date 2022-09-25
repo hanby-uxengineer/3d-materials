@@ -6,7 +6,6 @@ import { MeshDistortMaterial, Environment, useCursor } from '@react-three/drei';
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 
-
 const StyledDistort = styled.div`
     width: 100%;
     height: 100%;
@@ -22,7 +21,7 @@ function DistortSphere() {
 
     const [{ wobble, distort, roughness }] = useSpring({
         wobble: clicked ? 1.2 : hovered ? 1.05 : 1,
-        distort: clicked ? 0.6 : 0.2,
+        distort: clicked ? 0.6 : hovered ? 0.2 : 0,
         roughness: clicked ? 0.1 : 0,
         config: (n) => n === 'wobble' && hovered && { mass: 1, tension: 100, friction: 10 }
     }, [hovered, clicked]);
@@ -31,8 +30,8 @@ function DistortSphere() {
 
     useFrame((state) => {
         if (ref.current) {
-                ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, hovered ? state.mouse.x : 0, 0.2)
-                ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, hovered ? state.mouse.y : 0, 0.2)
+                ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, hovered ? state.mouse.x : 0, 0.2);
+                ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, hovered ? state.mouse.y : 0, 0.2);
         }
     });
 
