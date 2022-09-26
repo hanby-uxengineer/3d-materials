@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/3d-materials/static/js/main.785793ab.js",
+    "main.js": "/3d-materials/static/js/main.07363608.js",
     "static/media/nor.jpeg": "/3d-materials/static/media/nor.2224dbb917d795fe10cc.jpeg",
     "static/media/diff.jpeg": "/3d-materials/static/media/diff.59478d132cf6245daef6.jpeg",
     "static/media/ao.jpeg": "/3d-materials/static/media/ao.c6dbb1cf697347ccd4ab.jpeg",
     "static/media/rough.jpeg": "/3d-materials/static/media/rough.087559853f12381f7666.jpeg",
     "static/media/disp.jpeg": "/3d-materials/static/media/disp.5d54f27ad0e9284491db.jpeg",
     "index.html": "/3d-materials/index.html",
-    "main.785793ab.js.map": "/3d-materials/static/js/main.785793ab.js.map"
+    "main.07363608.js.map": "/3d-materials/static/js/main.07363608.js.map"
   },
   "entrypoints": [
-    "static/js/main.785793ab.js"
+    "static/js/main.07363608.js"
   ]
 }
