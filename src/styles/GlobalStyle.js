@@ -25,6 +25,12 @@ const GlobalStyle = createGlobalStyle`
 		font-size: 5rem;
 		font-weight: 600;
 	}
+
+	h3 {
+		color: white;
+		font-size: 2rem;
+		font-weight: 600;
+	}
 `;
 
 export default GlobalStyle;

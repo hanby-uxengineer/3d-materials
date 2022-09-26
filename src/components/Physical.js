@@ -1,16 +1,30 @@
-import styled from "styled-components";
 import { useRef, useState, Suspense } from 'react';
+import styled from "styled-components";
 import { Canvas } from '@react-three/fiber';
 import { Cloud, Environment, Float, useCursor } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
+import Spinner from "./Spinner";
 
 const StyledPhysical = styled.div`
     width: 100%;
     height: 100%;
 `;
 
-export default function Physical() {
+function BgPlane() {
+    return(
+        <>
+            <mesh position={[0, 0, -20]}>
+                <planeGeometry args={[100, 100, 1]} />
+                <meshStandardMaterial color='royalblue' />
+            </mesh>
+            <Cloud castShadow receiveShadow position={[-12, 12, -10]} speed={0.5} opacity={0.8} />
+            <Cloud castShadow receiveShadow position={[12, -12, -10]} speed={0.5} opacity={0.8} />
+        </>
+    );
+}
+
+function PhysicalSphere() {
     const ref = useRef()
     const [hovered, hover] = useState(false)
     const [clicked, click] = useState(false)
@@ -21,33 +35,34 @@ export default function Physical() {
 
     useCursor(hovered);
 
+    return(
+        <Float floatIntensity={4} rotationIntensity={0} speed={clicked ? 10 : 0}>
+            <a.mesh
+                ref={ref}
+                scale={wobble}
+                castShadow
+                onClick={(event) => click(!clicked)}
+                onPointerOver={(event) => hover(true)}
+                onPointerOut={(event) => hover(false)}
+            >
+                <sphereGeometry args={[1.5, 64, 64]} />
+                <a.meshPhysicalMaterial color='white' transmission={transmission} opacity={1} metalness={0} roughness={1} clearcoat={1} clearcoatRoughness={0} ior={2} thickness={1} specularIntensity={1} specularColor='white' envMapIntensity={1} exposure={1} />
+            </a.mesh>
+        </Float>
+    );
+}
+
+export default function Physical() {
     return (
         <StyledPhysical>
-            <Canvas>
-                <ambientLight intensity={0.2} color='white' />
-                <Suspense fallback={null}>
-                    <Float floatIntensity={4} rotationIntensity={0} speed={clicked ? 10 : 0}>
-                        <a.mesh
-                            ref={ref}
-                            scale={wobble}
-                            castShadow
-                            onClick={(event) => click(!clicked)}
-                            onPointerOver={(event) => hover(true)}
-                            onPointerOut={(event) => hover(false)}
-                        >
-                            <sphereGeometry args={[1.5, 64, 64]} />
-                            <a.meshPhysicalMaterial color='white' transmission={transmission} opacity={1} metalness={0} roughness={1} clearcoat={1} clearcoatRoughness={0} ior={2} thickness={1} specularIntensity={1} specularColor='white' envMapIntensity={1} exposure={1} />
-                        </a.mesh>
-                    </Float>
-                    <mesh position={[0, 0, -20]}>
-                        <planeGeometry args={[100, 100, 1]} />
-                        <meshStandardMaterial color='royalblue' />
-                    </mesh>
-                    <Cloud castShadow receiveShadow position={[-12, 12, -10]} speed={0.5} opacity={0.8} />
-                    <Cloud castShadow receiveShadow position={[12, -12, -10]} speed={0.5} opacity={0.8} />
+            <Suspense fallback={<Spinner />}>
+                <Canvas>
                     <Environment preset="sunset" />
-                </Suspense>
-            </Canvas>
+                    <ambientLight intensity={0.2} color='white' />
+                    <BgPlane />
+                    <PhysicalSphere />
+                </Canvas>
+            </Suspense>
         </StyledPhysical>
-    )
+    );
 }

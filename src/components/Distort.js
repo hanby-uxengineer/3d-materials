@@ -1,15 +1,15 @@
+import { useRef, useState, Suspense } from 'react';
 import styled from "styled-components";
 import * as THREE from 'three';
-import { useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { MeshDistortMaterial, Environment, useCursor } from '@react-three/drei';
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
+import Spinner from "./Spinner";
 
 const StyledDistort = styled.div`
     width: 100%;
     height: 100%;
-    background: white;
 `;
 
 const AnimatedMaterial = a(MeshDistortMaterial);
@@ -30,36 +30,37 @@ function DistortSphere() {
 
     useFrame((state) => {
         if (ref.current) {
-                ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, hovered ? state.mouse.x : 0, 0.2);
-                ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, hovered ? state.mouse.y : 0, 0.2);
+            ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, hovered ? state.mouse.x : 0, 0.2);
+            ref.current.position.y = THREE.MathUtils.lerp(ref.current.position.y, hovered ? state.mouse.y : 0, 0.2);
         }
     });
 
     return (
-        <Suspense fallback={null}>
-            <a.mesh
-                castShadow receiveShadow
-                ref={ref}
-                scale={wobble}
-                onPointerOver={(event) => hover(true)}
-                onPointerOut={(event) => hover(false)}
-                onClick={(event) => click(!clicked)}
-            >
-                <sphereGeometry args={[1.5, 64, 64]} />
-                <AnimatedMaterial distort={distort} speed={3} roughness={roughness} color='black' />
-            </a.mesh>
-            <Environment preset="warehouse" />
-        </Suspense>
+        <a.mesh
+            castShadow receiveShadow
+            ref={ref}
+            scale={wobble}
+            onPointerOver={(event) => hover(true)}
+            onPointerOut={(event) => hover(false)}
+            onClick={(event) => click(!clicked)}
+        >
+            <sphereGeometry args={[1.5, 64, 64]} />
+            <AnimatedMaterial distort={distort} speed={3} roughness={roughness} color='black' />
+        </a.mesh>        
     );
 }
 
 export default function Distort() {
     return (
         <StyledDistort>
-            <Canvas>
-                <ambientLight intensity={0} color='white' />
-                <DistortSphere />
-            </Canvas>
+            <Suspense fallback={<Spinner />}>
+                <Canvas>
+                    <color attach="background" args={['white']} />
+                    <Environment preset="warehouse" />
+                    <ambientLight intensity={0} color='white' />
+                    <DistortSphere />
+                </Canvas>
+            </Suspense>
         </StyledDistort>
     )
 }

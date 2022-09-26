@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Suspense, useRef, useState } from "react";
+import styled from "styled-components";
 import { TextureLoader } from "three";
 import { Canvas, useLoader } from '@react-three/fiber';
 import { Environment, OrbitControls, useCursor } from "@react-three/drei";
@@ -10,11 +10,11 @@ import dispImg from "../textures/disp.jpeg"
 import norImg from "../textures/nor.jpeg"
 import roughImg from "../textures/rough.jpeg"
 import aoImg from "../textures/ao.jpeg"
+import Spinner from "./Spinner";
 
 const StyledTexture = styled.div`
     width: 100%;
     height: 100%;
-    background: white;
 `;
 
 function TextureSphere() {
@@ -37,41 +37,42 @@ function TextureSphere() {
     useCursor(hovered);
 
     return (
-        <Suspense fallback={null}>
-            <a.mesh
-                castShadow receiveShadow
-                ref={ref}
-                scale={wobble}
-                onPointerOver={(event) => hover(true)}
-                onPointerOut={(event) => hover(false)}
-                onClick={(event) => click(!clicked)}
-            >
-                <sphereGeometry args={[1.5, 64, 64]} />
-                <a.meshStandardMaterial
-                    displacementScale={scale}
-                    map={colorMap}
-                    displacementMap={displacementMap}
-                    normalMap={normalMap}
-                    roughnessMap={roughnessMap}
-                    aoMap={aoMap}
-                    metalness={0}
-                    roughness={1}
-                />
-            </a.mesh>
-        </Suspense>
+        <a.mesh
+            castShadow receiveShadow
+            ref={ref}
+            scale={wobble}
+            onPointerOver={(event) => hover(true)}
+            onPointerOut={(event) => hover(false)}
+            onClick={(event) => click(!clicked)}
+        >
+            <sphereGeometry args={[1.5, 64, 64]} />
+            <a.meshStandardMaterial
+                displacementScale={scale}
+                map={colorMap}
+                displacementMap={displacementMap}
+                normalMap={normalMap}
+                roughnessMap={roughnessMap}
+                aoMap={aoMap}
+                metalness={0}
+                roughness={1}
+            />
+        </a.mesh>
     );
 }
 
 export default function Texture() {
     return (
         <StyledTexture>
-            <Canvas>
-                <OrbitControls />
-                <ambientLight intensity={1} color='white' />
-                <directionalLight position={[0, 0, 30]} intensity={1} color='white' />
-                <TextureSphere />
-                <Environment preset="warehouse" />
-            </Canvas>
+            <Suspense fallback={<Spinner />}>
+                <Canvas>
+                    <color attach="background" args={['white']} />
+                    <OrbitControls />
+                    <Environment preset="warehouse" />
+                    <ambientLight intensity={1} color='white' />
+                    <directionalLight position={[0, 0, 30]} intensity={1} color='white' />
+                    <TextureSphere />
+                </Canvas>
+            </Suspense>
         </StyledTexture>
     )
 }

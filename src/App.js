@@ -33,36 +33,42 @@ const CanvasWrapper = styled.div`
 	}
 `;
 
+function Canvases() {
+	return(
+		<CanvasContainer>
+			<CanvasWrapper>
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Physical />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Bloom />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Distort />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Reflect />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Metal />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Lamina />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Texture />
+			</CanvasWrapper>
+		</CanvasContainer>
+	);
+}
+
 export default function App() {
 
 	return (
 		<StyledApp>
-			<CanvasContainer>
-				<CanvasWrapper>
-					<Standard />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Physical />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Bloom />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Distort />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Reflect />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Metal />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Lamina />
-				</CanvasWrapper>
-				<CanvasWrapper>
-					<Texture />
-				</CanvasWrapper>
-			</CanvasContainer>
+			<Canvases />
 		</StyledApp>
 	)
 }

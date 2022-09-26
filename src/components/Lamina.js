@@ -1,15 +1,15 @@
+import { Suspense, useRef, useState } from "react";
 import styled from "styled-components";
-import { useRef, useState } from "react";
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, useCursor } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import { LayerMaterial, Depth, Fresnel } from 'lamina'
+import Spinner from "./Spinner";
 
 const StyledLamina = styled.div`
     width: 100%;
     height: 100%;
-    background: white;
 `;
 
 const AnimatedSphere = a(Sphere);
@@ -56,11 +56,14 @@ function LaminaSphere() {
 export default function Lamina() {
     return (
         <StyledLamina>
-            <Canvas>
-                <OrbitControls />
-                <ambientLight intensity={0} color='white' />
-                <LaminaSphere />
-            </Canvas>
+            <Suspense fallback={<Spinner />}>
+                <Canvas>
+                    <color attach="background" args={['white']} />
+                    <OrbitControls />
+                    <ambientLight intensity={0} color='white' />
+                    <LaminaSphere />
+                </Canvas>
+            </Suspense>
         </StyledLamina>
     )
 }
