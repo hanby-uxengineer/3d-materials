@@ -70,7 +70,7 @@ export default function Lamina() {
         <StyledLamina>
             <Suspense fallback={<Spinner />}>
                 <Canvas>
-                    <color attach="background" args={['rgb(30, 60, 60)']} />
+                    <color attach="background" args={['rgba(30, 60, 60, 1)']} />
                     <ambientLight intensity={0.1} color='white' />
                     <LaminaSphere />
                 </Canvas>

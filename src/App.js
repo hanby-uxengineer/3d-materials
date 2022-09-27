@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import Standard from './components/Standard';
-import Physical from './components/Physical';
-import Bloom from './components/Bloom';
-import Distort from './components/Distort';
-import Reflect from './components/Reflect';
 import Metal from './components/Metal';
+import Physical from './components/Physical';
+import Distort from './components/Distort';
+import Bloom from './components/Bloom';
+import Standard from './components/Standard';
 import Texture from './components/Texture';
 import Lamina from './components/Lamina';
+import Reflect from './components/Reflect';
 
 const StyledApp = styled.div`
 	width: 100%;
@@ -35,7 +35,7 @@ const CanvasWrapper = styled.div`
 	@media only screen and (max-width: 599px) {
 		width: 100vw;
 		height: 60vh;
-		:nth-child(-n+6), :nth-child(n+8) {
+		:nth-child(n+3) {
 			display: none;
 		}
 	}
@@ -125,7 +125,7 @@ const DescriptionContainer = styled.div`
 const MobilePopup = styled.div`
 	width: 100vw;
 	height: 10vh;
-	background: rgb(50, 50, 50);
+	background: rgba(50, 50, 50, 1);
 	display: none;
 
 	@media only screen and (max-width: 599px) {
@@ -142,28 +142,28 @@ function Canvases() {
 				<h2>⚠️ PC 버전에서 더 다양한 인터랙션을 확인하실 수 있습니다. ⚠️</h2>
 			</MobilePopup>
 			<CanvasWrapper>
-				<Standard />
+				<Metal />
 			</CanvasWrapper>
 			<CanvasWrapper>
 				<Physical />
 			</CanvasWrapper>
 			<CanvasWrapper>
-				<Bloom />
-			</CanvasWrapper>
-			<CanvasWrapper>
 				<Distort />
 			</CanvasWrapper>
 			<CanvasWrapper>
-				<Reflect />
+				<Bloom />
 			</CanvasWrapper>
 			<CanvasWrapper>
-				<Metal />
+				<Standard />
+			</CanvasWrapper>
+			<CanvasWrapper>
+				<Lamina />
 			</CanvasWrapper>
 			<CanvasWrapper>
 				<Texture />
 			</CanvasWrapper>
 			<CanvasWrapper>
-				<Lamina />
+				<Reflect />
 			</CanvasWrapper>
 		</CanvasContainer>
 	);

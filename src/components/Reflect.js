@@ -22,8 +22,8 @@ function ReflectPlane() {
                 mixBlur={1}
                 mixStrength={15}
                 depthScale={1}
-                minDepthThreshold={0.850}
-                color="rgb(30, 30, 30)"
+                minDepthThreshold={0.85}
+                color="rgba(30, 30, 30, 1)"
                 metalness={0.5}
                 roughness={1}
             />
@@ -103,11 +103,11 @@ export default function Reflect() {
         <StyledReflect>
             <Suspense fallback={<Spinner />}>
                 <Canvas>
-                    <color attach="background" args={['rgb(135, 135, 140)']} />
+                    <color attach="background" args={['rgba(135, 135, 140, 1)']} />
                     <Environment preset="city" />
                     <ambientLight intensity={0.5} color='white' />
                     <pointLight position={[10, 10, -10]} />
-                    <pointLight position={[-10, -10, -10]} color="hotpink" />
+                    <pointLight position={[-10, -10, -10]} color="hotpink" intensity={1} />
                     <ReflectSphere />
                     <ReflectPlane />
                 </Canvas>

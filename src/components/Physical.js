@@ -1,7 +1,7 @@
 import { useRef, useState, Suspense } from 'react';
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber';
-import { Cloud, Environment, Float, useCursor } from "@react-three/drei";
+import { Cloud, Environment, Float, GradientTexture, useCursor } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import Spinner from "./Spinner";
@@ -11,15 +11,21 @@ const StyledPhysical = styled.div`
     height: 100%;
 `;
 
-function BgPlane() {
+function CloudyPlane() {
     return(
         <>
             <mesh position={[0, 0, -20]}>
-                <planeGeometry args={[100, 100, 1]} />
-                <meshStandardMaterial color='royalblue' />
+                <planeGeometry args={[50, 50, 1]} />
+                <meshBasicMaterial>
+                    <GradientTexture
+                    stops={[0, 0.7, 1]}
+                    colors={['cornflowerblue', 'lightcoral', 'lightsalmon']}
+                    size={1024}
+                    />
+                </meshBasicMaterial>
             </mesh>
-            <Cloud castShadow receiveShadow position={[-12, 12, -10]} speed={0.5} opacity={0.8} />
-            <Cloud castShadow receiveShadow position={[12, -12, -10]} speed={0.5} opacity={0.8} />
+            <Cloud castShadow receiveShadow position={[-12, 12, -10]} speed={0.5} opacity={1} />
+            <Cloud castShadow receiveShadow position={[12, -12, -10]} speed={0.5} opacity={1} />
         </>
     );
 }
@@ -36,7 +42,7 @@ function PhysicalSphere() {
     useCursor(hovered);
 
     return(
-        <Float floatIntensity={4} rotationIntensity={0} speed={clicked ? 10 : 0}>
+        <Float floatIntensity={2} rotationIntensity={0} speed={clicked ? 10 : 0}>
             <a.mesh
                 ref={ref}
                 scale={wobble}
@@ -62,7 +68,7 @@ export default function Physical() {
                 <Canvas>
                     <Environment preset="sunset" />
                     <ambientLight intensity={0.2} color='white' />
-                    <BgPlane />
+                    <CloudyPlane />
                     <PhysicalSphere />
                 </Canvas>
             </Suspense>

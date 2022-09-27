@@ -29,7 +29,7 @@ function TextureSphere(props) {
 
     const [{ wobble, scale }] = useSpring({
         wobble: props.hovered ? 1.2 : 1,
-        scale: props.hovered ? 0.5 : 0.1
+        scale: props.hovered ? 0.3 : 0
     }, [props.hovered]);
 
     return (

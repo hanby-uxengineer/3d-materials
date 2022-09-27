@@ -2,7 +2,7 @@ import { useRef, useState, Suspense } from 'react';
 import styled from "styled-components";
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { MeshDistortMaterial, Environment, useCursor } from '@react-three/drei';
+import { MeshDistortMaterial, Environment, useCursor, GradientTexture } from '@react-three/drei';
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import Spinner from "./Spinner";
@@ -13,6 +13,23 @@ const StyledDistort = styled.div`
 `;
 
 const AnimatedMaterial = a(MeshDistortMaterial);
+
+function BgPlane() {
+    return(
+        <>
+            <mesh position={[0, 0, -20]}>
+                <planeGeometry args={[50, 50, 1]} />
+                <meshBasicMaterial>
+                    <GradientTexture
+                    stops={[0, 1]}
+                    colors={['white', 'gray']}
+                    size={1024}
+                    />
+                </meshBasicMaterial>
+            </mesh>
+        </>
+    );
+}
 
 function DistortSphere() {
     const ref = useRef();
@@ -58,9 +75,9 @@ export default function Distort() {
         <StyledDistort>
             <Suspense fallback={<Spinner />}>
                 <Canvas>
-                    <color attach="background" args={['white']} />
                     <Environment preset="warehouse" />
                     <ambientLight intensity={0} color='white' />
+                    <BgPlane />
                     <DistortSphere />
                 </Canvas>
             </Suspense>

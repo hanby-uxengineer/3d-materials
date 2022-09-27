@@ -16,8 +16,8 @@ const StyledBloom = styled.div`
 `;
 
 function BloomSphere(props) {
-    const glowColorA = new THREE.MeshBasicMaterial({ color: new THREE.Color(4, 0.5, 0), toneMapped: false });
-    const glowColorB = new THREE.MeshBasicMaterial({ color: new THREE.Color(7, 0.5, 0), toneMapped: false });
+    const glowColorA = new THREE.MeshBasicMaterial({ color: new THREE.Color(8, 0.4, 0), toneMapped: false });
+    const glowColorB = new THREE.MeshBasicMaterial({ color: new THREE.Color(4, 0.2, 0), toneMapped: false });
     
     const ref = useRef();
     const [{ wobble, material }] = useSpring({
@@ -54,10 +54,10 @@ export default function Bloom() {
                     onPointerOut={(event) => hover(false)}
                     style={{ cursor: 'move' }}
                 >
-                    <color attach="background" args={['black']} />
+                    <color attach="background" args={['rgba(24, 36, 48, 1)']} />
                     <OrbitControls enableZoom={false} autoRotate={hovered ? true : false} />
                     { (hovered)
-                        ? <Stars radius={50} depth={50} count={100} factor={10} fade speed={1} />
+                        ? <Stars radius={30} depth={30} count={200} factor={3} fade speed={1} />
                         : <></>
                     }
                     <ambientLight intensity={0.1} />
