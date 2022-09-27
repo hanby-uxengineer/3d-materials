@@ -35,7 +35,7 @@ const CanvasWrapper = styled.div`
 	@media only screen and (max-width: 599px) {
 		width: 100vw;
 		height: 60vh;
-		:nth-child(-n+5), :nth-child(n+7) {
+		:nth-child(-n+6), :nth-child(n+8) {
 			display: none;
 		}
 	}
@@ -108,7 +108,7 @@ const DescriptionContainer = styled.div`
 			font-family: 'Poppins', sans-serif;
 			color: gray;
 			font-size: clamp(1rem, 2.6vw, 1.4rem);
-			font-weight: 100;
+			font-weight: 300;
 		}
 
 		@media only screen and (max-width: 904px) {
@@ -125,7 +125,7 @@ const DescriptionContainer = styled.div`
 const MobilePopup = styled.div`
 	width: 100vw;
 	height: 10vh;
-	background: rgb(20, 20, 20);
+	background: rgb(50, 50, 50);
 	display: none;
 
 	@media only screen and (max-width: 599px) {
