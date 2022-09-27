@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, useCursor } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
-import { LayerMaterial, Depth, Fresnel } from 'lamina'
+import { LayerMaterial, Depth, Fresnel, Noise } from 'lamina'
 import Spinner from "./Spinner";
 
 const StyledLamina = styled.div`
@@ -28,7 +28,7 @@ function LaminaSphere() {
 
     useFrame((state) => {
         if(clicked) {
-            setTime(time + 0.05);
+            setTime(time + 0.1);
         }
 
         const sin = Math.sin(time);
@@ -59,6 +59,7 @@ function LaminaSphere() {
                 <Depth colorA="blue" colorB="green" alpha={1} mode="add" near={3 * gradient} far={3} origin={[1, 0, 1]} />
                 <Depth colorA="white" colorB="red" alpha={1} mode="overlay" near={1.5 * gradient} far={1.5} origin={[1, 1, 1]} />
                 <AnimatedFresnel mode="add" color="white" intensity={1} power={power} bias={0.05} />
+                <Noise scale={1000} colorA="white" colorB="gray" mode="subtract" alpha={0.2} />
             </LayerMaterial>
         </AnimatedSphere>
     );
