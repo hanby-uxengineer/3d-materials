@@ -54,6 +54,10 @@ const DescriptionContainer = styled.div`
 		gap: 1rem;
 	}
 
+	@media only screen and (max-width: 599px) {
+		padding: 3rem;
+	}
+
 	.contentContainer {
 		display: flex;
 		flex-direction: column;

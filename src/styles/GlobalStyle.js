@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
 		font-family: 'Noto Sans KR', sans-serif;
 		color: white;
 		font-size: clamp(1rem, 2.6vw, 1.4rem);
-        font-weight: 100;
+        font-weight: 300;
 		line-height: 120%;
 	}
 `;
