@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, Suspense } from 'react';
+import { useRef, useState, Suspense } from 'react';
 import styled from "styled-components";
 import * as THREE from 'three';
 import { Canvas, extend } from '@react-three/fiber';
@@ -45,12 +45,6 @@ function BloomSphere(props) {
 export default function Bloom() {
     const [hovered, hover] = useState(false);
 
-    useEffect(() => {
-        document.body.style.cursor = hovered
-        ? 'move'
-        : 'unset'
-    });
-
     return (
         <StyledBloom>
             <Suspense fallback={<Spinner />}>
@@ -58,9 +52,10 @@ export default function Bloom() {
                     shadows gl={{ antialias: true }}
                     onPointerOver={(event) => hover(true)}
                     onPointerOut={(event) => hover(false)}
+                    style={{ cursor: 'move' }}
                 >
                     <color attach="background" args={['black']} />
-                    <OrbitControls enableZoom={false} autoRotate />
+                    <OrbitControls enableZoom={false} autoRotate={hovered ? true : false} />
                     { (hovered)
                         ? <Stars radius={50} depth={50} count={100} factor={10} fade speed={1} />
                         : <></>

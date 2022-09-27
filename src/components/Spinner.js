@@ -6,7 +6,8 @@ const StyledSpinner = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: black;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
 `;
 
 export default function Spinner() {

@@ -2,7 +2,7 @@ import { Suspense, useRef, useState } from "react";
 import styled from "styled-components";
 import { TextureLoader } from "three";
 import { Canvas, useLoader } from '@react-three/fiber';
-import { Environment, OrbitControls, useCursor } from "@react-three/drei";
+import { Environment, OrbitControls, Sky } from "@react-three/drei";
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import colorImg from "../textures/diff.jpeg"
@@ -17,10 +17,8 @@ const StyledTexture = styled.div`
     height: 100%;
 `;
 
-function TextureSphere() {
+function TextureSphere(props) {
     const ref = useRef();
-    const [hovered, hover] = useState(false);
-    const [clicked, click] = useState(false);
     const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] = useLoader(TextureLoader, [
         colorImg,
         dispImg,
@@ -30,20 +28,15 @@ function TextureSphere() {
     ]);
 
     const [{ wobble, scale }] = useSpring({
-        wobble: clicked ? 1.2 : hovered ? 1.05 : 1,
-        scale: clicked ? 0.5 : hovered ? 0.2 : 0.1
-    }, [hovered, clicked]);
-
-    useCursor(hovered);
+        wobble: props.hovered ? 1.2 : 1,
+        scale: props.hovered ? 0.5 : 0.1
+    }, [props.hovered]);
 
     return (
         <a.mesh
             castShadow receiveShadow
             ref={ref}
             scale={wobble}
-            onPointerOver={(event) => hover(true)}
-            onPointerOut={(event) => hover(false)}
-            onClick={(event) => click(!clicked)}
         >
             <sphereGeometry args={[1.5, 64, 64]} />
             <a.meshStandardMaterial
@@ -61,16 +54,22 @@ function TextureSphere() {
 }
 
 export default function Texture() {
+    const [hovered, hover] = useState(false);
+
     return (
         <StyledTexture>
             <Suspense fallback={<Spinner />}>
-                <Canvas>
+                <Canvas
+                    onPointerOver={(event) => hover(true)}
+                    onPointerOut={(event) => hover(false)}
+                    style={{ cursor: 'move' }}
+                >
                     <color attach="background" args={['white']} />
-                    <OrbitControls />
+                    <Sky />
+                    <OrbitControls enableZoom={false} />
                     <Environment preset="warehouse" />
                     <ambientLight intensity={1} color='white' />
-                    <directionalLight position={[0, 0, 30]} intensity={1} color='white' />
-                    <TextureSphere />
+                    <TextureSphere hovered={hovered} />
                 </Canvas>
             </Suspense>
         </StyledTexture>

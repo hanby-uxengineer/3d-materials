@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect, Suspense } from 'react';
+import { useRef, useState, Suspense } from 'react';
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
 import { useSpring } from "@react-spring/web";
 import { a } from "@react-spring/three";
 import Spinner from "./Spinner";
@@ -20,25 +20,31 @@ function MetalSphere(props) {
     }, [props.hovered]);
 
     return(
-        <a.mesh
-            castShadow receiveShadow
-            ref={ref}
-            scale={wobble}
-        >
-            <sphereGeometry args={[1.5, 64, 64]} />
-            <a.meshPhysicalMaterial color={color} metalness={1} roughness={0} clearcoat={1} />
-        </a.mesh>
+        <>
+            <a.mesh
+                castShadow receiveShadow
+                ref={ref}
+                scale={wobble}
+            >
+                <sphereGeometry args={[1.5, 64, 64]} />
+                <a.meshPhysicalMaterial color={color} metalness={1} roughness={0} clearcoat={1} />
+            </a.mesh>
+            <ContactShadows
+                rotation={[Math.PI / 2, 0, 0]}
+                position={[0, -2.4, 0]}
+                opacity={0.3}
+                width={3}
+                height={3}
+                blur={2}
+                far={2.4}
+                color='white'
+            />
+        </>
     );
 }
 
 export default function Metal() {
     const [hovered, hover] = useState(false);
-
-    useEffect(() => {
-        document.body.style.cursor = hovered
-        ? 'move'
-        : 'unset'
-    });
 
     return (
         <StyledMetal>
@@ -46,6 +52,7 @@ export default function Metal() {
                 <Canvas 
                     onPointerOver={(event) => hover(true)} 
                     onPointerOut={(event) => hover(false)}
+                    style={{ cursor: 'move' }}
                 >
                     <color attach="background" args={['black']} />
                     <OrbitControls autoRotate={hovered ? true : false} enableZoom={false} />
