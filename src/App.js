@@ -12,6 +12,10 @@ const StyledApp = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	background: black;
+
+	@media only screen and (max-width: 599px) {
+		height: 100vh;
+	}
 `;
 
 const CanvasContainer = styled.div`
@@ -30,11 +34,15 @@ const CanvasWrapper = styled.div`
 
 	@media only screen and (max-width: 599px) {
 		width: 100vw;
+		height: 60vh;
+		:nth-child(-n+5), :nth-child(n+7) {
+			display: none;
+		}
 	}
 `;
 
 const DescriptionContainer = styled.div`
-	width: 100vw;
+	width: 100%;
 	min-height: 25vh;
 	padding: 4rem;
 	display: flex;
@@ -61,7 +69,7 @@ const DescriptionContainer = styled.div`
 
 		@media only screen and (max-width: 904px) {
 			height: 100%;
-			gap: 4.8rem;
+			gap: 2.4rem;
 		}
 
 		.tagContainer {
@@ -110,9 +118,25 @@ const DescriptionContainer = styled.div`
 	}
 `;
 
+const MobilePopup = styled.div`
+	width: 100vw;
+	height: 10vh;
+	background: rgb(20, 20, 20);
+	display: none;
+
+	@media only screen and (max-width: 599px) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+`;
+
 function Canvases() {
 	return(
 		<CanvasContainer>
+			<MobilePopup>
+				<h2>⚠️ PC 버전에서 더 다양한 인터랙션을 확인하실 수 있습니다. ⚠️</h2>
+			</MobilePopup>
 			<CanvasWrapper>
 				<Standard />
 			</CanvasWrapper>
