@@ -41,7 +41,10 @@ function DistortSphere() {
             ref={ref}
             scale={wobble}
             onPointerOver={(event) => hover(true)}
-            onPointerOut={(event) => hover(false)}
+            onPointerOut={(event) => {
+                hover(false)
+                click(false)
+            }}
             onClick={(event) => click(!clicked)}
         >
             <sphereGeometry args={[1.5, 64, 64]} />

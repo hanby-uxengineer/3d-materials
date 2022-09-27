@@ -41,9 +41,12 @@ function PhysicalSphere() {
                 ref={ref}
                 scale={wobble}
                 castShadow
-                onClick={(event) => click(!clicked)}
                 onPointerOver={(event) => hover(true)}
-                onPointerOut={(event) => hover(false)}
+                onPointerOut={(event) => {
+                    hover(false)
+                    click(false)
+                }}
+                onClick={(event) => click(!clicked)}
             >
                 <sphereGeometry args={[1.5, 64, 64]} />
                 <a.meshPhysicalMaterial color='white' transmission={transmission} opacity={1} metalness={0} roughness={1} clearcoat={1} clearcoatRoughness={0} ior={2} thickness={1} specularIntensity={1} specularColor='white' envMapIntensity={1} exposure={1} />

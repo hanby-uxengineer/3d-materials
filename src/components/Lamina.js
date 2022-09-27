@@ -47,7 +47,10 @@ function LaminaSphere() {
             args={[1.5, 64, 64]}
             scale={wobble}
             onPointerOver={(event) => hover(true)}
-            onPointerOut={(event) => hover(false)}
+            onPointerOut={(event) => {
+                hover(false)
+                click(false)
+            }}
             onClick={(event) => click(!clicked)}
         >
             <LayerMaterial ref={ref} toneMapped={false}>
