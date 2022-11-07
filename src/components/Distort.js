@@ -18,7 +18,7 @@ function BgPlane() {
     return(
         <>
             <mesh position={[0, 0, -20]}>
-                <planeGeometry args={[50, 50, 1]} />
+                <planeGeometry args={[100, 50, 1]} />
                 <meshBasicMaterial>
                     <GradientTexture
                     stops={[0, 1]}
