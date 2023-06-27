@@ -141,7 +141,7 @@ function Canvases() {
             <MobilePopup>
                 <h2>⚠️ PC 버전에서 더 다양한 인터랙션을 확인하실 수 있습니다. ⚠️</h2>
             </MobilePopup>
-            <CanvasWrapper>
+             <CanvasWrapper>
                 <Metal />
             </CanvasWrapper>
             <CanvasWrapper>
@@ -163,7 +163,7 @@ function Canvases() {
                 <Texture />
             </CanvasWrapper>
             <CanvasWrapper>
-                <Reflect />
+                <Reflect /> 
             </CanvasWrapper>
         </CanvasContainer>
     );

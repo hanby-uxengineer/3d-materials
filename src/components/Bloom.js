@@ -16,8 +16,8 @@ const StyledBloom = styled.div`
 `;
 
 function BloomSphere(props) {
-    const glowColorA = new THREE.MeshBasicMaterial({ color: new THREE.Color(8, 0.4, 0), toneMapped: false });
-    const glowColorB = new THREE.MeshBasicMaterial({ color: new THREE.Color(4, 0.2, 0), toneMapped: false });
+    const glowColorA = new THREE.MeshBasicMaterial({ color: new THREE.Color(1, 1, 2), toneMapped: false });
+    const glowColorB = new THREE.MeshBasicMaterial({ color: new THREE.Color(1, 1, 1.4), toneMapped: false });
     
     const ref = useRef();
     const [{ wobble, material }] = useSpring({

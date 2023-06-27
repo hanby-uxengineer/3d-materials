@@ -21,7 +21,7 @@ function GradientBackground() {
                 <meshBasicMaterial>
                     <GradientTexture
                     stops={[0, 0.8]}
-                    colors={['darkslategray', 'rgba(24, 40, 40, 1)']}
+                    colors={['darkslategray', 'rgb(5, 15, 10)']}
                     size={1024}
                     />
                 </meshBasicMaterial>

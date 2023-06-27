@@ -19,7 +19,7 @@ function CloudyPlane() {
                 <meshBasicMaterial>
                     <GradientTexture
                     stops={[0, 0.7, 1]}
-                    colors={['cornflowerblue', 'lightcoral', 'lightsalmon']}
+                    colors={['rgb(50, 100, 225)', 'rgb(225, 100, 100)', 'rgb(200, 200, 100)']}
                     size={1024}
                     />
                 </meshBasicMaterial>
@@ -67,7 +67,7 @@ export default function Physical() {
             <Suspense fallback={<Spinner />}>
                 <Canvas>
                     <Environment preset="sunset" />
-                    <ambientLight intensity={0.2} color='white' />
+                    <ambientLight intensity={0.5} color='white' />
                     <CloudyPlane />
                     <PhysicalSphere />
                 </Canvas>
